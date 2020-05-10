@@ -1,6 +1,13 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+
+    <hr>
+
+    <date v-bind="$attrs"></date>
+
+    <hr>
+
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -31,10 +38,19 @@
 </template>
 
 <script>
+import Date from './Date'
+
 export default {
   name: 'HelloWorld',
+  components: {
+    Date
+  },
   props: {
     msg: String
+  },
+
+  created() {
+    console.log('Hello>$attrs:', this.$attrs)
   }
 }
 </script>
