@@ -7,10 +7,11 @@ const routes = [
   {
     path: '/',
     component: Layout,
+    name: 'Home',
+    redirect: '/',
     children: [
       {
         path: '',
-        name: 'Home',
         component: () => import('@/views/home')
       }
     ]
@@ -19,17 +20,25 @@ const routes = [
   {
     path: '/test',
     component: Layout,
+    name: 'Test',
+    redirect: '/test/',
     children: [
       {
         path: '',
-        name: 'Test',
+        name: 'TestList',
         component: () => import('@/views/test')
+      },
+      {
+        path: ':id',
+        name: 'TestDetail',
+        hidden: true,
+        component: () => import('@/views/test/detail')
       }
     ]
   }
 
 ]
-
+export { routes }
 export default new Router({
   routes
 })

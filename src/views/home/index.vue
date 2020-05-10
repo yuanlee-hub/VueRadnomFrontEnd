@@ -1,5 +1,5 @@
 <template>
-    <div id="home">
+    <div id="home" style="text-align: center;">
         <img alt="Vue logo" src="@/assets/logo.png">
         <HelloWorld msg="Welcome to Your Vue.js App" year="2020" month="4" date="21" class="hello"/>
     </div>
@@ -15,14 +15,3 @@
     }
   }
 </script>
-
-<style>
-    #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-</style>
