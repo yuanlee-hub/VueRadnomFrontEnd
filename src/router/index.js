@@ -4,10 +4,13 @@ import Layout from '@/layout'
 Vue.use(Router)
 
 const routes = [
-  {
+  { // Home
     path: '/',
-    component: Layout,
     name: 'Home',
+    meta: {
+      title: 'Home'
+    },
+    component: Layout,
     redirect: '/',
     children: [
       {
@@ -17,27 +20,36 @@ const routes = [
     ]
   },
 
-  {
+  { // Test
     path: '/test',
-    component: Layout,
     name: 'Test',
+    meta: {
+      title: 'Test'
+    },
+    component: Layout,
     redirect: '/test/',
     children: [
       {
         path: '',
         name: 'TestList',
+        meta: {
+          title: 'TestList'
+        },
         component: () => import('@/views/test')
       },
       {
         path: ':id',
         name: 'TestDetail',
-        hidden: true,
-        component: () => import('@/views/test/detail')
+        meta: {
+          title: 'TestDetail'
+        },
+        component: () => import('@/views/test/detail'),
+        hidden: true
       }
     ]
   }
-
 ]
+
 export { routes }
 export default new Router({
   routes
