@@ -20,6 +20,21 @@ const routes = [
     ]
   },
 
+  { // Cookie
+    path: '/cookie',
+    name: 'Cookie',
+    meta: {
+      title: 'Cookie'
+    },
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/cookie')
+      }
+    ]
+  },
+
   { // Test
     path: '/test',
     name: 'Test',
