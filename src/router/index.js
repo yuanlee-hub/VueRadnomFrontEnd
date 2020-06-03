@@ -35,6 +35,34 @@ const routes = [
     ]
   },
 
+  { // QRCode
+    path: '/qrcode',
+    name: 'QRCode',
+    meta: {
+      title: 'QRCode'
+    },
+    component: Layout,
+    redirect: '/qrcode/custom',
+    children: [
+      {
+        path: 'custom',
+        name: 'QRCodeCustom',
+        meta: {
+          title: '自定义二维码内容'
+        },
+        component: () => import('@/views/qrcode/custom')
+      },
+      {
+        path: 'redirect',
+        name: 'QRCodeRedirect',
+        meta: {
+          title: '扫码跳转'
+        },
+        component: () => import('@/views/qrcode/redirect')
+      }
+    ]
+  },
+
   { // Test
     path: '/test',
     name: 'Test',
