@@ -20,7 +20,11 @@
     methods: {
       getCookie() {
         getCookie().then(res => {
+          if (res.code !== 0) return
+          console.log('getCookie>res:', res)
           this.cookie = res.data
+          document.cookie = 'token=' + res.data.token
+          document.cookie = 'maxAge(10s)=' + res.data.token + ';max-age=' + 10
         })
       }
     }
