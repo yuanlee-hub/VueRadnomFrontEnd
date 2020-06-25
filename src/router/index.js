@@ -7,14 +7,14 @@ const routes = [
   { // Home
     path: '/',
     name: 'Home',
-    meta: {
-      title: 'Home'
-    },
     component: Layout,
     redirect: '/',
     children: [
       {
         path: '',
+        meta: {
+          title: 'Home'
+        },
         component: () => import('@/views/home')
       }
     ]
@@ -23,13 +23,14 @@ const routes = [
   { // Cookie
     path: '/cookie',
     name: 'Cookie',
-    meta: {
-      title: 'Cookie'
-    },
     component: Layout,
+    redirect: '/cookie/',
     children: [
       {
         path: '',
+        meta: {
+          title: 'Cookie'
+        },
         component: () => import('@/views/cookie')
       }
     ]
@@ -38,9 +39,6 @@ const routes = [
   { // QRCode
     path: '/qrcode',
     name: 'QRCode',
-    meta: {
-      title: 'QRCode'
-    },
     component: Layout,
     redirect: '/qrcode/custom',
     children: [
@@ -66,9 +64,6 @@ const routes = [
   { // Test
     path: '/test',
     name: 'Test',
-    meta: {
-      title: 'Test'
-    },
     component: Layout,
     redirect: '/test/',
     children: [

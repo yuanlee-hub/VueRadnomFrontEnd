@@ -36,16 +36,15 @@
             children: subs.length && subs.map(sub => ({ name: sub.name, title: sub.meta && sub.meta.title || sub.name })) || null
           })
         })
-        console.log('items:', items)
+        // console.log('items:', items)
         return items
       }
-    },
-    created() {
-      console.log('routes:', this.routes)
     }
   }
 </script>
 
-<style scoped>
-
+<style>
+    .router-link-exact-active {
+        background-color: aquamarine;
+    }
 </style>
