@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 const defaultSettings = require('./src/settings.js')
 
 console.log('ENV:', process.env.ENV)
@@ -61,6 +62,22 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
+    },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            ecma: undefined,
+            warnings: false,
+            parse: {},
+            compress: {
+              drop_console: true,
+              drop_debugger: false,
+              pure_funcs: ['console.log'] // 移除console
+            }
+          },
+        }),
+      ],
     }
   },
   chainWebpack(config) {
