@@ -85,6 +85,22 @@ const routes = [
         hidden: true
       }
     ]
+  },
+
+  { // Scoped style
+    path: '/scoped-style',
+    component: Layout,
+    redirect: '/scoped-style/',
+    children: [
+      {
+        path: '',
+        name: 'ScopedStyle',
+        meta: {
+          title: 'ScopedStyle'
+        },
+        component: () => import('@/views/scoped-style')
+      }
+    ]
   }
 ]
 
