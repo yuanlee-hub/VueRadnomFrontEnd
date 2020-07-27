@@ -89,16 +89,41 @@ const routes = [
 
   { // Scoped style
     path: '/scoped-style',
+    name: 'ScopedStyle',
     component: Layout,
     redirect: '/scoped-style/',
     children: [
       {
         path: '',
-        name: 'ScopedStyle',
         meta: {
           title: 'ScopedStyle'
         },
         component: () => import('@/views/scoped-style')
+      }
+    ]
+  },
+
+  { // JSON
+    path: '/JSON',
+    name: 'JSON',
+    component: Layout,
+    redirect: '/JSON/',
+    children: [
+      {
+        path: '',
+        name: 'LocalJSON',
+        meta: {
+          title: 'LocalJSON'
+        },
+        component: () => import('@/views/json/localShow')
+      },
+      {
+        path: 'http',
+        name: 'HTTPJSON',
+        meta: {
+          title: 'HTTPJSON'
+        },
+        component: () => import('@/views/json/http')
       }
     ]
   }

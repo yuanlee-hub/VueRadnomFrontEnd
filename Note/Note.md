@@ -16,3 +16,26 @@
 ### 非 scoped
 
 对整个应用起作用
+
+
+
+# JSON
+
+## 值（*value*）可以是双引号括起来的字符串（*string*）、数值(number)、`true`、`false`、 `null`、对象（object）或者数组（array）。这些结构可以嵌套。
+
+
+
+### 非法值序列化处理无则：
+
+#### Date 会序列化成 ISO格式
+
+#### Symbol / Function / undefined 值会直接剔除
+
+#### RegExp / Map / Set / Infinity  值会转换为空对象字面量 ({})
+
+### HTTP 客户端发送 / 服务端响应 非法值，都会遵守以上处理规则
+
+
+
+### 非法值解析时，会报错
+
