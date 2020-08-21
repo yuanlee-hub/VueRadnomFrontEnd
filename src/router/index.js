@@ -126,6 +126,31 @@ const routes = [
         component: () => import('@/views/json/http')
       }
     ]
+  },
+
+  { // requestPayload
+    path: '/requestPayload',
+    name: 'RequestPayload',
+    component: Layout,
+    redirect: '/requestPayload/jquery',
+    children: [
+      {
+        path: 'jquery',
+        name: 'JQueryRequestPayload',
+        meta: {
+          title: 'JQueryRequestPayload'
+        },
+        component: () => import('@/views/requestPayload/jquery')
+      },
+      {
+        path: 'axios',
+        name: 'AxiosRequestPayload',
+        meta: {
+          title: 'AxiosRequestPayload'
+        },
+        component: () => import('@/views/requestPayload/axios')
+      }
+    ]
   }
 ]
 
