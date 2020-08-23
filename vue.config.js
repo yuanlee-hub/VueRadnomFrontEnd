@@ -1,5 +1,6 @@
 'use strict'
 const path = require('path')
+const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const defaultSettings = require('./src/settings.js')
 
@@ -121,6 +122,11 @@ module.exports = {
     config
       .when(process.env.NODE_ENV !== 'development',
         config => {
+          config
+              .plugin('progress')
+              .use(new webpack.ProgressPlugin())
+              .end()
+
           config
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
