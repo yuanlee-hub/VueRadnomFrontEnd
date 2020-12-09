@@ -7,6 +7,13 @@ export function getJSON () {
   })
 }
 
+export function getResponsePayload () {
+  return request({
+    url: '/json/responsePayload',
+    method: 'get'
+  })
+}
+
 export function postJSON (data) {
   return request({
     url: '/json',

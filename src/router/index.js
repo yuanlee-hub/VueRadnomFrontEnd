@@ -151,7 +151,24 @@ const routes = [
         component: () => import('@/views/requestPayload/axios')
       }
     ]
+  },
+
+  { // responsePayload
+    path: '/responsePayload',
+    name: 'ResponsePayload',
+    component: Layout,
+    redirect: '/responsePayload/',
+    children: [
+      {
+        path: '',
+        meta: {
+          title: 'ResponsePayload'
+        },
+        component: () => import('@/views/responsePayload')
+      }
+    ]
   }
+
 ]
 
 export { routes }
