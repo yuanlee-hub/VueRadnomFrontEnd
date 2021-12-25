@@ -184,6 +184,21 @@ const routes = [
     ]
   },
 
+  { // freeze
+    path: '/freeze',
+    name: 'Freeze',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        meta: {
+          title: 'Freeze'
+        },
+        component: () => import('@/views/freeze')
+      }
+    ]
+  },
+
 ]
 
 export { routes }
