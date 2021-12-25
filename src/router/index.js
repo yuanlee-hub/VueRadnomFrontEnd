@@ -167,7 +167,22 @@ const routes = [
         component: () => import('@/views/responsePayload')
       }
     ]
-  }
+  },
+
+  { // class & object
+    path: '/class-object',
+    name: 'ClassObject',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        meta: {
+          title: 'Class & Object'
+        },
+        component: () => import('@/views/class')
+      }
+    ]
+  },
 
 ]
 
