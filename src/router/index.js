@@ -199,6 +199,21 @@ const routes = [
     ]
   },
 
+  { // props-type
+    path: '/props-type',
+    name: 'PropsType',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        meta: {
+          title: '组件属性数据类型'
+        },
+        component: () => import('@/views/props-type')
+      }
+    ]
+  },
+
 ]
 
 export { routes }
