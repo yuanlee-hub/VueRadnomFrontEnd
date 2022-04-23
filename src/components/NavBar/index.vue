@@ -1,50 +1,93 @@
 <template>
-    <div class="nav-bar">
-        <dl v-for="item of items" :key="item.name">
-            <dt>
-                <router-link :to="{name: item.name}">{{ item.title }}</router-link>
-            </dt>
-            <template v-if="item.children">
-                <dd v-for="sub of item.children" :key="sub.name">
-                    <router-link :to="{name: sub.name}">{{ sub.title }}</router-link>
-                </dd>
-            </template>
-        </dl>
-    </div>
+    <nav>
+      <NavItem
+          v-for="item of items"
+          :key="item.name"
+          :data="item"
+      />
+    </nav>
 </template>
 
 <script>
   import { routes } from '@/router'
+  import NavItem from "@/components/NavBar/NavItem";
 
   export default {
     name: "NavBar",
+
+    components: {
+      NavItem
+    },
+
     data() {
       return {
-        routes
+        items: null
       }
     },
-    computed: {
-      items() {
+
+    created() {
+      this.items = this.initItems(routes)
+      // console.log('this.items:\n', JSON.stringify(this.items, null, 2))
+    },
+
+    methods: {
+      initItems(routes, list = []) {
+        function IIFE(routes, items, _parentName = '', _fullPath = '', _depth = 0) {
+          for (const route of routes) {
+            if (route.hidden === true) continue
+
+            const {name, meta, path } = route
+            const fullPath = _fullPath + (_fullPath ? '/' : '') + path
+            const depth = _depth + (name ? 1 : 0)
+            if (name && meta && meta.title) {
+              list.push({
+                name,
+                title: meta.title,
+                path,
+                _parentName,
+                _fullPath: fullPath,
+                _depth: depth,
+                children: []
+              })
+            }
+
+            if (route.children) {
+              IIFE(route.children, list, route.name || _parentName, fullPath, depth)
+            }
+          }
+        }
+
+        IIFE(routes)
+
+        const parentMap = new Map()
+        list.forEach((_) => {
+          parentMap.set(_.name, _);
+        });
+
         const items = []
-        this.routes.filter(item => {
-          // console.log('item:', item)
-          const subs = item.children && item.children.filter(sub => !sub.hidden && sub.name)
-          // console.log('subs:', subs)
-          items.push({
-            name: item.name,
-            title: item.meta && item.meta.title || item.name,
-            children: subs.length && subs.map(sub => ({ name: sub.name, title: sub.meta && sub.meta.title || sub.name })) || null
-          })
-        })
-        // console.log('items:', items)
+        list.forEach((_) => {
+          const parent = parentMap.get(_._parentName);
+          if (parent) {
+            parent.children.push(_);
+          } else {
+            items.push(_);
+          }
+        });
         return items
       }
     }
   }
 </script>
 
-<style>
-    .router-link-exact-active {
-        background-color: aquamarine;
-    }
+<style scoped>
+nav {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  border-right: 1px solid #999;
+  background-color: #001529;
+}
 </style>

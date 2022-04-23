@@ -1,17 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/layout'
+
 Vue.use(Router)
 
-const routes = [
+export const routes = [
   { // Home
     path: '/',
-    name: 'Home',
     component: Layout,
     redirect: '/',
     children: [
       {
         path: '',
+        name: 'Home',
         meta: {
           title: 'Home'
         },
@@ -20,50 +21,12 @@ const routes = [
     ]
   },
 
-  { // Cookie
-    path: '/cookie',
-    name: 'Cookie',
-    component: Layout,
-    redirect: '/cookie/',
-    children: [
-      {
-        path: '',
-        meta: {
-          title: 'Cookie'
-        },
-        component: () => import('@/views/cookie')
-      }
-    ]
-  },
-
-  { // QRCode
-    path: '/qrcode',
-    name: 'QRCode',
-    component: Layout,
-    redirect: '/qrcode/custom',
-    children: [
-      {
-        path: 'custom',
-        name: 'QRCodeCustom',
-        meta: {
-          title: '自定义二维码内容'
-        },
-        component: () => import('@/views/qrcode/custom')
-      },
-      {
-        path: 'redirect',
-        name: 'QRCodeRedirect',
-        meta: {
-          title: '扫码跳转'
-        },
-        component: () => import('@/views/qrcode/redirect')
-      }
-    ]
-  },
-
   { // Test
     path: '/test',
     name: 'Test',
+    meta: {
+      title: 'Test'
+    },
     component: Layout,
     redirect: '/test/',
     children: [
@@ -87,14 +50,58 @@ const routes = [
     ]
   },
 
+  { // Cookie
+    path: '/cookie',
+    component: Layout,
+    redirect: '/cookie/',
+    children: [
+      {
+        path: '',
+        name: 'Cookie',
+        meta: {
+          title: 'Cookie'
+        },
+        component: () => import('@/views/cookie')
+      }
+    ]
+  },
+
+  { // QRCode
+    path: '/qrcode',
+    name: 'QRCode',
+    meta: {
+      title: '二维码'
+    },
+    component: Layout,
+    redirect: '/qrcode/custom',
+    children: [
+      {
+        path: 'custom',
+        name: 'QRCodeCustom',
+        meta: {
+          title: '自定义二维码内容'
+        },
+        component: () => import('@/views/qrcode/custom')
+      },
+      {
+        path: 'redirect',
+        name: 'QRCodeRedirect',
+        meta: {
+          title: '扫码跳转'
+        },
+        component: () => import('@/views/qrcode/redirect')
+      }
+    ]
+  },
+
   { // Scoped style
     path: '/scoped-style',
-    name: 'ScopedStyle',
     component: Layout,
     redirect: '/scoped-style/',
     children: [
       {
         path: '',
+        name: 'ScopedStyle',
         meta: {
           title: 'ScopedStyle'
         },
@@ -106,6 +113,9 @@ const routes = [
   { // JSON
     path: '/JSON',
     name: 'JSON',
+    meta: {
+      title: 'JSON'
+    },
     component: Layout,
     redirect: '/JSON/',
     children: [
@@ -131,6 +141,9 @@ const routes = [
   { // requestPayload
     path: '/requestPayload',
     name: 'RequestPayload',
+    meta: {
+      title: 'RequestPayload'
+    },
     component: Layout,
     redirect: '/requestPayload/jquery',
     children: [
@@ -155,12 +168,12 @@ const routes = [
 
   { // responsePayload
     path: '/responsePayload',
-    name: 'ResponsePayload',
     component: Layout,
     redirect: '/responsePayload/',
     children: [
       {
         path: '',
+        name: 'ResponsePayload',
         meta: {
           title: 'ResponsePayload'
         },
@@ -171,11 +184,11 @@ const routes = [
 
   { // class & object
     path: '/class-object',
-    name: 'ClassObject',
     component: Layout,
     children: [
       {
         path: '',
+        name: 'ClassObject',
         meta: {
           title: 'Class & Object'
         },
@@ -186,11 +199,11 @@ const routes = [
 
   { // freeze
     path: '/freeze',
-    name: 'Freeze',
     component: Layout,
     children: [
       {
         path: '',
+        name: 'Freeze',
         meta: {
           title: 'Freeze'
         },
@@ -201,11 +214,11 @@ const routes = [
 
   { // props-type
     path: '/props-type',
-    name: 'PropsType',
     component: Layout,
     children: [
       {
         path: '',
+        name: 'PropsType',
         meta: {
           title: '组件属性数据类型'
         },
@@ -216,7 +229,6 @@ const routes = [
 
 ]
 
-export { routes }
 export default new Router({
   routes
 })

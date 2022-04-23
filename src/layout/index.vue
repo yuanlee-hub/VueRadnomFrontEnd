@@ -1,10 +1,9 @@
 <template>
     <div id="main" class="main">
-        <nav-bar></nav-bar>
+        <div class="side">
+          <nav-bar></nav-bar>
+        </div>
         <div class="content">
-            <h1>{{ title }}</h1>
-            <hr>
-            <br>
             <transition name="fade-transform" mode="out-in">
                 <template>
                     <router-view :key="key" />
@@ -15,7 +14,7 @@
 </template>
 
 <script>
-  import NavBar from "../components/NavBar/index"
+  import NavBar from "@/components/NavBar"
   export default {
     name: "Layout",
     components: {
@@ -23,12 +22,23 @@
     },
     computed: {
       key() {
-        return this.$route.path
+        return this.$route.fullPath
       },
       title() {
-        // console.log('$route:', this.$route)
+        console.log('$route:', this.$route)
         return this.$route.meta.title
       }
     }
   }
 </script>
+
+<style scoped>
+.side {
+  position: absolute;
+  width: 300px;
+  height: 100vh;
+}
+.content {
+  padding:20px 20px 20px 320px;
+}
+</style>
