@@ -227,6 +227,21 @@ export const routes = [
     ]
   },
 
+  { // same-key
+    path: '/same-key',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'SameKeyPage',
+        meta: {
+          title: '不同元素使用相同的 key'
+        },
+        component: () => import('@/views/same-key')
+      }
+    ]
+  },
+
 ]
 
 export default new Router({
