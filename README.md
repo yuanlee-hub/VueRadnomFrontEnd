@@ -1,7 +1,8 @@
-# vue-template-by-cli
+# VueRandomFrontEnd
 
 ## Project setup
 ```
+vue create <project-name>
 yarn install
 ```
 
