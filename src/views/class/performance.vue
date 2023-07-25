@@ -1,24 +1,32 @@
 <template>
+  <div>
+  <h1>实例化 class & 对象字面量性能比较</h1>
   <pre>
-    50000 条数据 & 20 个字段的情况下：
-    class 略快于 对象字面量
+    {{ total }} 条数据 & 20 个字段的情况下：
+    <hr>
+    对象字面量耗时：{{ objectTime }} ms<br/>
+    实例化 class耗时：{{ classTime }} ms<br/>
   </pre>
+
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'Class',
+    name: 'ClassPerformance',
     data() {
       return {
+        total: 1000,
         objects: null,
-        classes: null
+        objectTime: null,
+        classes: null,
+        classTime: null,
       }
     },
     created() {
-      const total = 50000
-
-      console.time('obj')
-      this.objects = Array.from({ length: total }).map((_, idx) => ({
+      let list = Array.from({ length: this.total })
+      const objStart = Date.now()
+      this.objects = list.map((_, idx) => ({
         id: idx,
         f1: `f1-${idx}`,
         f2: `f2-${idx}`,
@@ -40,7 +48,7 @@
         f18: `f18-${idx}`,
         f19: `f19-${idx}`
       }))
-      console.timeEnd('obj')
+      this.objectTime = Date.now() - objStart
 
       class F {
         constructor(data = {}) {
@@ -66,8 +74,10 @@
           this.f19 = data.f19
         }
       }
-      console.time('class')
-      this.classes = Array.from({length: total}).map((_,idx) => new F({
+
+      list = Array.from({length: this.total})
+      const classStart = Date.now()
+      this.classes = list.map((_,idx) => new F({
         id: idx,
         f1: `f1-${idx}`,
         f2: `f2-${idx}`,
@@ -89,8 +99,7 @@
         f18: `f18-${idx}`,
         f19: `f19-${idx}`
       }))
-      console.timeEnd('class')
+      this.classTime = Date.now() - classStart
     }
-
   }
 </script>
