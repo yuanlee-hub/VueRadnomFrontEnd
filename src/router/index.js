@@ -182,17 +182,38 @@ export const routes = [
     ]
   },
 
-  { // class & object
-    path: '/class-object',
+  { // class
+    path: '/class',
     component: Layout,
+    name: 'Class',
+    meta: {
+      title: 'Class'
+    },
+    redirect: '/class/performance',
     children: [
       {
-        path: '',
-        name: 'ClassObject',
+        path: 'performance',
+        name: 'ClassPerformance',
         meta: {
-          title: 'Class & Object'
+          title: '实例化 Class & 对象字面量性能比较'
         },
-        component: () => import('@/views/class')
+        component: () => import('@/views/class/performance')
+      },
+      {
+        path: 'get-computed',
+        name: 'ClassGetComputed',
+        meta: {
+          title: 'class get 模拟 computed'
+        },
+        component: () => import('@/views/class/computed.vue')
+      },
+      {
+        path: 'get-filter',
+        name: 'ClassGetFilter',
+        meta: {
+          title: 'Class get 模拟 filter'
+        },
+        component: () => import('@/views/class/filter.vue')
       }
     ]
   },
